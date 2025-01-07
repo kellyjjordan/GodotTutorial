@@ -4,6 +4,7 @@ var rotation_speed:int
 var direction_x:float
 #var direction_y:float
 signal collision
+var can_collide:=true
 func _ready():
 	var rng := RandomNumberGenerator.new()
 	
@@ -31,10 +32,15 @@ func _process(delta):
 	rotation_degrees = rotation_speed * delta
 	
 func _on_body_entered(_body):
-	collision.emit()
+	if can_collide:
+		collision.emit()
 
 #func to remove meteor if hit by laser 
 func _on_area_entered(area):
 	area.queue_free() #removing laser 
+	$ZapSound.play()
+	$MeteorGreyBig1.hide()
+	can_collide = false
+	await get_tree().create_timer(0.5).timeout
 	queue_free() #removing the meteor
 	pass # Replace with function body.

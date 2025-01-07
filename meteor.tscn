@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dy2uqjqq1chmo"]
+[gd_scene load_steps=4 format=3 uid="uid://dy2uqjqq1chmo"]
 
 [ext_resource type="Script" path="res://meteor.gd" id="1_dvqjf"]
+[ext_resource type="AudioStream" uid="uid://b1bvxsb8f4ja" path="res://Bonus/sfx_zap.ogg" id="2_8ripb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f3yrw"]
 radius = 39.0
@@ -16,6 +17,10 @@ scale = Vector2(0.888614, 0.761905)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_f3yrw")
+
+[node name="ZapSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_8ripb")
+volume_db = 15.0
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
